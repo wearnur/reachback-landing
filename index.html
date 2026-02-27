@@ -218,8 +218,34 @@ footer { padding: 32px 0; text-align: center; color: var(--gray); font-size: 0.8
       <li>Hosting & maintenance included</li>
       <li>Email & text support</li>
     </ul>
-    <a href="mailto:warner@reachback.io?subject=I%20want%20to%20try%20ReachBack&body=Hi%20Warner%2C%0A%0AI%20run%20a%20%5Btype%20of%20business%5D%20in%20%5Bcity%5D%20and%20I%27m%20interested%20in%20ReachBack.%0A%0AI%20have%20about%20%5Bnumber%5D%20past%20customers%20in%20my%20CRM." class="cta-btn" style="width:100%;text-align:center;">Get Started — First Month Free</a>
-    <p class="guarantee">💡 No credit card required. We set everything up for you.</p>
+    <form id="lead-form" action="https://formsubmit.co/jwe0379@gmail.com" method="POST" style="margin-top:24px;">
+      <input type="hidden" name="_subject" value="🔥 New ReachBack Lead!">
+      <input type="hidden" name="_captcha" value="false">
+      <input type="hidden" name="_next" value="https://wearnur.github.io/reachback-landing/#thanks">
+      <input type="hidden" name="_template" value="table">
+      <input type="text" name="name" placeholder="Your name" required style="width:100%;padding:12px 16px;margin-bottom:8px;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;">
+      <input type="text" name="business" placeholder="Business name" required style="width:100%;padding:12px 16px;margin-bottom:8px;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;">
+      <input type="tel" name="phone" placeholder="Phone number" required style="width:100%;padding:12px 16px;margin-bottom:8px;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;">
+      <select name="business_type" style="width:100%;padding:12px 16px;margin-bottom:8px;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;background:white;">
+        <option value="">What type of business?</option>
+        <option value="Pressure Washing">Pressure Washing</option>
+        <option value="Lawn Care">Lawn Care / Landscaping</option>
+        <option value="HVAC">HVAC</option>
+        <option value="Pest Control">Pest Control</option>
+        <option value="Plumbing">Plumbing</option>
+        <option value="Cleaning">Cleaning Services</option>
+        <option value="Roofing">Roofing</option>
+        <option value="Painting">Painting</option>
+        <option value="Pool Service">Pool Service</option>
+        <option value="Other">Other</option>
+      </select>
+      <input type="number" name="past_customers" placeholder="Approx. number of past customers" style="width:100%;padding:12px 16px;margin-bottom:12px;border:2px solid #e2e8f0;border-radius:8px;font-size:1rem;">
+      <button type="submit" class="cta-btn" style="width:100%;text-align:center;border:none;font-size:1.1rem;">Get Started — First Month Free</button>
+    </form>
+    <p class="guarantee">💡 No credit card required. We set everything up for you. You'll hear from us within 24 hours.</p>
+    <div id="thanks" style="display:none;padding:24px;background:#f0fdf4;border-radius:12px;margin-top:16px;text-align:center;">
+      <p style="font-size:1.2rem;font-weight:600;color:#166534;">🎉 Got it! We'll be in touch within 24 hours.</p>
+    </div>
   </div>
 </div>
 </section>
@@ -260,7 +286,7 @@ footer { padding: 32px 0; text-align: center; color: var(--gray); font-size: 0.8
 <div class="container">
   <h2>Stop leaving money on the table.</h2>
   <p>Your past customers want to hear from you. Let's make it happen.</p>
-  <a href="mailto:warner@reachback.io?subject=I%20want%20to%20try%20ReachBack&body=Hi%20Warner%2C%0A%0AI%20run%20a%20%5Btype%20of%20business%5D%20in%20%5Bcity%5D%20and%20I%27m%20interested%20in%20ReachBack.%0A%0AI%20have%20about%20%5Bnumber%5D%20past%20customers%20in%20my%20CRM." class="cta-btn">Get Started Free →</a>
+  <a href="#pricing" class="cta-btn">Get Started Free →</a>
 </div>
 </section>
 
@@ -271,5 +297,13 @@ footer { padding: 32px 0; text-align: center; color: var(--gray); font-size: 0.8
 </div>
 </footer>
 
+<script>
+// Show thank you message if redirected back after form submit
+if(window.location.hash === '#thanks') {
+  document.getElementById('thanks').style.display = 'block';
+  document.getElementById('lead-form').style.display = 'none';
+  document.getElementById('pricing').scrollIntoView({behavior:'smooth'});
+}
+</script>
 </body>
 </html>
