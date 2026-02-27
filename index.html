@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ReachBack — AI-Powered Customer Reactivation for Service Businesses</title>
+<meta name="description" content="Turn your past customers into new revenue. AI-powered SMS outreach that sounds like you, not a robot. Built for pressure washers, lawn care, HVAC, and more.">
+<style>
+:root {
+  --primary: #2563eb;
+  --primary-dark: #1d4ed8;
+  --accent: #10b981;
+  --dark: #1e293b;
+  --gray: #64748b;
+  --light: #f8fafc;
+  --white: #ffffff;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--dark); line-height: 1.6; }
+.container { max-width: 1100px; margin: 0 auto; padding: 0 24px; }
+
+/* Nav */
+nav { padding: 16px 0; border-bottom: 1px solid #e2e8f0; background: var(--white); position: sticky; top: 0; z-index: 100; }
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+.logo span { color: var(--accent); }
+.nav-cta { background: var(--primary); color: white; padding: 10px 24px; border-radius: 8px; text-decoration: none; font-weight: 600; transition: background 0.2s; }
+.nav-cta:hover { background: var(--primary-dark); }
+
+/* Hero */
+.hero { padding: 80px 0 60px; text-align: center; background: linear-gradient(135deg, #eff6ff 0%, #f0fdf4 100%); }
+.hero h1 { font-size: 2.8rem; font-weight: 800; line-height: 1.2; margin-bottom: 20px; max-width: 700px; margin-left: auto; margin-right: auto; }
+.hero h1 .highlight { color: var(--primary); }
+.hero p { font-size: 1.25rem; color: var(--gray); max-width: 600px; margin: 0 auto 32px; }
+.hero-stats { display: flex; justify-content: center; gap: 48px; margin-top: 40px; flex-wrap: wrap; }
+.stat { text-align: center; }
+.stat-number { font-size: 2.2rem; font-weight: 800; color: var(--primary); }
+.stat-label { font-size: 0.9rem; color: var(--gray); }
+
+/* CTA button */
+.cta-btn { display: inline-block; background: var(--primary); color: white; padding: 16px 40px; border-radius: 10px; font-size: 1.1rem; font-weight: 700; text-decoration: none; transition: all 0.2s; border: none; cursor: pointer; }
+.cta-btn:hover { background: var(--primary-dark); transform: translateY(-1px); box-shadow: 0 4px 12px rgba(37,99,235,0.3); }
+.cta-btn-outline { background: transparent; color: var(--primary); border: 2px solid var(--primary); }
+.cta-btn-outline:hover { background: var(--primary); color: white; }
+
+/* Problem */
+.problem { padding: 80px 0; }
+.problem h2 { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
+.problem-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 32px; }
+.problem-card { padding: 32px; border-radius: 12px; background: var(--light); border-left: 4px solid #ef4444; }
+.problem-card h3 { margin-bottom: 8px; font-size: 1.1rem; }
+.problem-card p { color: var(--gray); font-size: 0.95rem; }
+
+/* How it works */
+.how { padding: 80px 0; background: var(--light); }
+.how h2 { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
+.steps { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 32px; }
+.step { text-align: center; padding: 24px; }
+.step-num { width: 48px; height: 48px; border-radius: 50%; background: var(--primary); color: white; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; font-weight: 700; margin: 0 auto 16px; }
+.step h3 { margin-bottom: 8px; }
+.step p { color: var(--gray); font-size: 0.9rem; }
+
+/* Case study */
+.case { padding: 80px 0; }
+.case h2 { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
+.case-box { background: linear-gradient(135deg, #1e293b, #334155); color: white; border-radius: 16px; padding: 48px; max-width: 700px; margin: 0 auto; }
+.case-box .quote { font-size: 1.3rem; font-style: italic; margin-bottom: 24px; line-height: 1.5; }
+.case-box .attribution { font-size: 0.9rem; color: #94a3b8; }
+.case-numbers { display: flex; gap: 32px; margin-top: 32px; flex-wrap: wrap; }
+.case-num { flex: 1; text-align: center; min-width: 120px; }
+.case-num strong { display: block; font-size: 1.8rem; color: var(--accent); }
+.case-num span { font-size: 0.85rem; color: #94a3b8; }
+
+/* Pricing */
+.pricing { padding: 80px 0; background: var(--light); }
+.pricing h2 { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 16px; }
+.pricing .subtitle { text-align: center; color: var(--gray); margin-bottom: 48px; }
+.pricing-card { background: var(--white); border: 2px solid var(--primary); border-radius: 16px; padding: 48px; max-width: 480px; margin: 0 auto; text-align: center; box-shadow: 0 4px 24px rgba(0,0,0,0.06); }
+.pricing-card .price { font-size: 3rem; font-weight: 800; color: var(--primary); }
+.pricing-card .price span { font-size: 1rem; color: var(--gray); font-weight: 400; }
+.pricing-card .includes { text-align: left; margin: 32px 0; }
+.pricing-card .includes li { padding: 8px 0; list-style: none; font-size: 0.95rem; }
+.pricing-card .includes li::before { content: "✓ "; color: var(--accent); font-weight: 700; }
+.pricing-card .guarantee { font-size: 0.85rem; color: var(--gray); margin-top: 24px; }
+
+/* FAQ */
+.faq { padding: 80px 0; }
+.faq h2 { font-size: 2rem; font-weight: 700; text-align: center; margin-bottom: 48px; }
+.faq-grid { max-width: 700px; margin: 0 auto; }
+.faq-item { border-bottom: 1px solid #e2e8f0; padding: 24px 0; }
+.faq-item h3 { font-size: 1.05rem; margin-bottom: 8px; cursor: pointer; }
+.faq-item p { color: var(--gray); font-size: 0.95rem; }
+
+/* CTA Final */
+.final-cta { padding: 80px 0; text-align: center; background: linear-gradient(135deg, #1e40af, #2563eb); color: white; }
+.final-cta h2 { font-size: 2rem; font-weight: 700; margin-bottom: 16px; }
+.final-cta p { font-size: 1.1rem; opacity: 0.9; margin-bottom: 32px; }
+.final-cta .cta-btn { background: white; color: var(--primary); }
+.final-cta .cta-btn:hover { background: #f0f9ff; }
+
+/* Contact form */
+.contact-form { max-width: 400px; margin: 32px auto 0; }
+.contact-form input, .contact-form textarea { width: 100%; padding: 14px 16px; margin-bottom: 12px; border: 2px solid rgba(255,255,255,0.3); border-radius: 8px; font-size: 1rem; background: rgba(255,255,255,0.15); color: white; }
+.contact-form input::placeholder, .contact-form textarea::placeholder { color: rgba(255,255,255,0.7); }
+.contact-form textarea { height: 80px; resize: vertical; }
+
+/* Footer */
+footer { padding: 32px 0; text-align: center; color: var(--gray); font-size: 0.85rem; }
+
+@media (max-width: 640px) {
+  .hero h1 { font-size: 2rem; }
+  .hero-stats { gap: 24px; }
+  .case-box { padding: 32px 24px; }
+  .pricing-card { padding: 32px 24px; }
+}
+</style>
+</head>
+<body>
+
+<nav>
+<div class="container">
+  <a href="#" class="logo">Reach<span>Back</span></a>
+  <a href="#pricing" class="nav-cta">Get Started</a>
+</div>
+</nav>
+
+<section class="hero">
+<div class="container">
+  <h1>Your past customers are <span class="highlight">your best leads.</span></h1>
+  <p>AI-powered SMS outreach that reactivates dormant customers for service businesses. Sounds like you, not a robot. Books jobs on autopilot.</p>
+  <a href="#pricing" class="cta-btn">Start Reactivating Customers →</a>
+  <div class="hero-stats">
+    <div class="stat"><div class="stat-number">5-15%</div><div class="stat-label">Reply Rate</div></div>
+    <div class="stat"><div class="stat-number">24,900%</div><div class="stat-label">Typical ROI</div></div>
+    <div class="stat"><div class="stat-number">5 min</div><div class="stat-label">Setup Time</div></div>
+  </div>
+</div>
+</section>
+
+<section class="problem">
+<div class="container">
+  <h2>You're sitting on a goldmine of past customers</h2>
+  <div class="problem-grid">
+    <div class="problem-card">
+      <h3>They already trust you</h3>
+      <p>Acquiring a new customer costs 5-7x more than reactivating an existing one. Your past customers already know your work quality.</p>
+    </div>
+    <div class="problem-card">
+      <h3>But you're too busy to reach out</h3>
+      <p>You're running jobs, managing crews, handling estimates. Who has time to text 300 past customers one by one?</p>
+    </div>
+    <div class="problem-card">
+      <h3>Generic blasts don't work</h3>
+      <p>Mass marketing texts get ignored. Customers can smell a template. They respond to personal messages from someone they know.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="how">
+<div class="container">
+  <h2>How ReachBack Works</h2>
+  <div class="steps">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Upload Your Customer List</h3>
+      <p>Export from Jobber, ServiceTitan, Markate, or any CRM. We auto-detect your data format.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>AI Scores & Drafts</h3>
+      <p>We analyze each customer's history, value, and recency to prioritize outreach and draft personalized messages.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>You Review & Approve</h3>
+      <p>See every message before it goes out. Edit anything you want. Hit approve and they send from your business number.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">4</div>
+      <h3>Track Replies & Book Jobs</h3>
+      <p>Replies are automatically categorized as hot, warm, or cold leads. Focus on the ones ready to book.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="case">
+<div class="container">
+  <h2>Real Results</h2>
+  <div class="case-box">
+    <div class="quote">"I had 400+ past customers just sitting in my CRM doing nothing. ReachBack texted them with messages that sounded exactly like me. Booked 10 jobs the first week."</div>
+    <div class="attribution">— Service business owner, Oklahoma City</div>
+    <div class="case-numbers">
+      <div class="case-num"><strong>500</strong><span>Messages Sent</span></div>
+      <div class="case-num"><strong>$8</strong><span>Total SMS Cost</span></div>
+      <div class="case-num"><strong>10</strong><span>Jobs Booked</span></div>
+      <div class="case-num"><strong>$2,000+</strong><span>Revenue Generated</span></div>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="pricing" id="pricing">
+<div class="container">
+  <h2>Simple Pricing</h2>
+  <p class="subtitle">No setup fees. No contracts. Cancel anytime.</p>
+  <div class="pricing-card">
+    <div class="price">$99<span>/month</span></div>
+    <ul class="includes">
+      <li>AI-powered customer scoring & prioritization</li>
+      <li>Personalized message drafting (sounds like you)</li>
+      <li>Web dashboard — review & approve from your phone</li>
+      <li>Unlimited customer imports</li>
+      <li>Reply tracking & lead categorization</li>
+      <li>Twilio SMS included (up to 500 texts/mo)</li>
+      <li>Your own business phone number</li>
+      <li>Hosting & maintenance included</li>
+      <li>Email & text support</li>
+    </ul>
+    <a href="mailto:warner@reachback.io?subject=I%20want%20to%20try%20ReachBack&body=Hi%20Warner%2C%0A%0AI%20run%20a%20%5Btype%20of%20business%5D%20in%20%5Bcity%5D%20and%20I%27m%20interested%20in%20ReachBack.%0A%0AI%20have%20about%20%5Bnumber%5D%20past%20customers%20in%20my%20CRM." class="cta-btn" style="width:100%;text-align:center;">Get Started — First Month Free</a>
+    <p class="guarantee">💡 No credit card required. We set everything up for you.</p>
+  </div>
+</div>
+</section>
+
+<section class="faq">
+<div class="container">
+  <h2>Frequently Asked Questions</h2>
+  <div class="faq-grid">
+    <div class="faq-item">
+      <h3>What kind of businesses is this for?</h3>
+      <p>Any service business with past customers: pressure washing, lawn care, HVAC, plumbing, pest control, cleaning, roofing, painting, landscaping, pool service, and more.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Will the texts sound robotic?</h3>
+      <p>No. Our AI drafts messages that sound exactly like you'd text a customer yourself. Natural, personal, and conversational. You review every message before it sends.</p>
+    </div>
+    <div class="faq-item">
+      <h3>What CRM do I need?</h3>
+      <p>Any CRM that lets you export customer data as a CSV file. We support Jobber, ServiceTitan, Markate, HouseCall Pro, and any generic spreadsheet.</p>
+    </div>
+    <div class="faq-item">
+      <h3>How long does setup take?</h3>
+      <p>About 5 minutes. Export your customer list, we import it, and you're reviewing messages. We handle all the technical setup.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Can customers reply?</h3>
+      <p>Yes! When a customer replies to your text, it shows up in your dashboard with a priority score. Hot leads (ready to book) are highlighted so you can call them back first.</p>
+    </div>
+    <div class="faq-item">
+      <h3>Is there a contract?</h3>
+      <p>No contracts. Month-to-month. Cancel anytime. We're confident you'll stay because you'll book jobs that pay for the service many times over.</p>
+    </div>
+  </div>
+</div>
+</section>
+
+<section class="final-cta">
+<div class="container">
+  <h2>Stop leaving money on the table.</h2>
+  <p>Your past customers want to hear from you. Let's make it happen.</p>
+  <a href="mailto:warner@reachback.io?subject=I%20want%20to%20try%20ReachBack&body=Hi%20Warner%2C%0A%0AI%20run%20a%20%5Btype%20of%20business%5D%20in%20%5Bcity%5D%20and%20I%27m%20interested%20in%20ReachBack.%0A%0AI%20have%20about%20%5Bnumber%5D%20past%20customers%20in%20my%20CRM." class="cta-btn">Get Started Free →</a>
+</div>
+</section>
+
+<footer>
+<div class="container">
+  <p>ReachBack — AI-Powered Customer Reactivation for Service Businesses</p>
+  <p style="margin-top:8px;">Built in Oklahoma City 🏗️</p>
+</div>
+</footer>
+
+</body>
+</html>
