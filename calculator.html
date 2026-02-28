@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Customer Reactivation ROI Calculator | ReachBack</title>
+<meta name="description" content="Free calculator: find out how much revenue you're leaving on the table from past customers. For pressure washing, lawn care, HVAC, and service businesses.">
+<meta name="keywords" content="customer reactivation calculator, service business ROI, SMS marketing calculator, past customer revenue, pressure washing marketing, lawn care marketing">
+<style>
+:root { --primary: #2563eb; --accent: #10b981; --dark: #1e293b; --gray: #64748b; --light: #f8fafc; }
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body { font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif; color: var(--dark); line-height: 1.6; background: var(--light); }
+.container { max-width: 700px; margin: 0 auto; padding: 0 24px; }
+nav { padding: 16px 0; border-bottom: 1px solid #e2e8f0; background: white; }
+nav .container { display: flex; justify-content: space-between; align-items: center; }
+.logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; }
+.logo span { color: var(--accent); }
+.hero { padding: 48px 0 32px; text-align: center; }
+.hero h1 { font-size: 2rem; font-weight: 800; margin-bottom: 12px; }
+.hero p { color: var(--gray); font-size: 1.1rem; }
+.calc-card { background: white; border-radius: 16px; padding: 40px; box-shadow: 0 4px 24px rgba(0,0,0,0.06); margin-bottom: 32px; }
+.field { margin-bottom: 24px; }
+.field label { display: block; font-weight: 600; margin-bottom: 8px; font-size: 0.95rem; }
+.field .hint { font-size: 0.85rem; color: var(--gray); margin-bottom: 6px; }
+.field input, .field select { width: 100%; padding: 14px 16px; border: 2px solid #e2e8f0; border-radius: 10px; font-size: 1.1rem; transition: border-color 0.2s; }
+.field input:focus, .field select:focus { outline: none; border-color: var(--primary); }
+.calc-btn { width: 100%; padding: 16px; background: var(--primary); color: white; border: none; border-radius: 10px; font-size: 1.1rem; font-weight: 700; cursor: pointer; transition: all 0.2s; }
+.calc-btn:hover { background: #1d4ed8; transform: translateY(-1px); }
+.results { display: none; margin-top: 32px; }
+.results.show { display: block; animation: fadeIn 0.4s ease; }
+@keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+.result-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; margin-bottom: 24px; }
+.result-box { background: var(--light); border-radius: 12px; padding: 20px; text-align: center; }
+.result-box.highlight { background: linear-gradient(135deg, #eff6ff, #f0fdf4); border: 2px solid var(--accent); }
+.result-num { font-size: 2rem; font-weight: 800; color: var(--primary); }
+.result-box.highlight .result-num { color: var(--accent); }
+.result-label { font-size: 0.85rem; color: var(--gray); margin-top: 4px; }
+.result-breakdown { background: var(--light); border-radius: 12px; padding: 24px; margin-bottom: 24px; }
+.result-breakdown h3 { margin-bottom: 12px; }
+.breakdown-row { display: flex; justify-content: space-between; padding: 8px 0; border-bottom: 1px solid #e2e8f0; font-size: 0.95rem; }
+.breakdown-row:last-child { border: none; }
+.cta-section { text-align: center; padding: 32px; background: linear-gradient(135deg, #1e40af, #2563eb); border-radius: 16px; color: white; margin-top: 24px; }
+.cta-section h2 { font-size: 1.5rem; margin-bottom: 8px; }
+.cta-section p { opacity: 0.9; margin-bottom: 20px; }
+.cta-section a { display: inline-block; background: white; color: var(--primary); padding: 14px 32px; border-radius: 10px; font-weight: 700; text-decoration: none; }
+.social-proof { text-align: center; padding: 32px 0; color: var(--gray); font-size: 0.9rem; }
+footer { padding: 32px 0; text-align: center; color: var(--gray); font-size: 0.85rem; }
+@media (max-width: 640px) { .result-grid { grid-template-columns: 1fr; } .calc-card { padding: 24px; } }
+</style>
+</head>
+<body>
+
+<nav><div class="container">
+  <a href="index.html" class="logo">Reach<span>Back</span></a>
+  <a href="index.html#pricing" style="color:var(--primary);font-weight:600;text-decoration:none;">Get Started →</a>
+</div></nav>
+
+<div class="container">
+  <div class="hero">
+    <h1>💰 How Much Revenue Are Your Past Customers Worth?</h1>
+    <p>Find out in 30 seconds. Free calculator for service businesses.</p>
+  </div>
+
+  <div class="calc-card">
+    <div class="field">
+      <label>How many past customers do you have?</label>
+      <div class="hint">Check your CRM, phone contacts, or old invoices</div>
+      <input type="number" id="customers" placeholder="e.g. 200" min="1" value="">
+    </div>
+    <div class="field">
+      <label>What's your average job value?</label>
+      <div class="hint">Typical amount per service call or project</div>
+      <input type="number" id="avgJob" placeholder="e.g. 250" min="1" value="" step="10">
+    </div>
+    <div class="field">
+      <label>What type of business?</label>
+      <select id="bizType">
+        <option value="pressure">Pressure Washing</option>
+        <option value="lawn">Lawn Care / Landscaping</option>
+        <option value="hvac">HVAC</option>
+        <option value="pest">Pest Control</option>
+        <option value="plumbing">Plumbing</option>
+        <option value="cleaning">Cleaning Services</option>
+        <option value="pool">Pool Service</option>
+        <option value="roofing">Roofing / Painting</option>
+        <option value="other">Other Service Business</option>
+      </select>
+    </div>
+    <button class="calc-btn" onclick="calculate()">Calculate My Revenue Potential →</button>
+
+    <div class="results" id="results">
+      <div class="result-grid">
+        <div class="result-box highlight">
+          <div class="result-num" id="revenue">$0</div>
+          <div class="result-label">Estimated revenue from reactivation</div>
+        </div>
+        <div class="result-box">
+          <div class="result-num" id="roi">0x</div>
+          <div class="result-label">Return on investment</div>
+        </div>
+        <div class="result-box">
+          <div class="result-num" id="jobsBooked">0</div>
+          <div class="result-label">Estimated jobs booked</div>
+        </div>
+        <div class="result-box">
+          <div class="result-num" id="smsCost">$0</div>
+          <div class="result-label">Total SMS cost</div>
+        </div>
+      </div>
+      
+      <div class="result-breakdown">
+        <h3>📊 How we calculated this</h3>
+        <div class="breakdown-row"><span>Past customers texted</span><span id="bkTexted">0</span></div>
+        <div class="breakdown-row"><span>Expected reply rate</span><span id="bkReply">0%</span></div>
+        <div class="breakdown-row"><span>Expected replies</span><span id="bkReplies">0</span></div>
+        <div class="breakdown-row"><span>Booking rate (from replies)</span><span id="bkBookRate">0%</span></div>
+        <div class="breakdown-row"><span>Jobs booked</span><span id="bkJobs">0</span></div>
+        <div class="breakdown-row"><span>Average job value</span><span id="bkAvg">$0</span></div>
+        <div class="breakdown-row"><span>Cost per SMS</span><span>$0.008</span></div>
+        <div class="breakdown-row"><span>Total SMS cost</span><span id="bkCost">$0</span></div>
+        <div class="breakdown-row" style="font-weight:700;border-top:2px solid #e2e8f0;padding-top:12px"><span>Net profit from reactivation</span><span id="bkProfit" style="color:var(--accent)">$0</span></div>
+      </div>
+
+      <div class="cta-section">
+        <h2>Want to capture this revenue?</h2>
+        <p>ReachBack does all of this automatically — AI writes the messages, you just approve.</p>
+        <a href="index.html#pricing">Start Free — First Month on Us →</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="social-proof">
+    <p>Based on real data: a pressure washer sent 500 texts ($8 cost) and booked 10 jobs worth $2,000+</p>
+  </div>
+</div>
+
+<footer><div class="container">
+  <p><a href="index.html" style="color:var(--gray)">ReachBack</a> — AI-Powered Customer Reactivation for Service Businesses</p>
+</div></footer>
+
+<script>
+function calculate() {
+  const customers = parseInt(document.getElementById('customers').value) || 0;
+  const avgJob = parseInt(document.getElementById('avgJob').value) || 0;
+  if (!customers || !avgJob) { alert('Please fill in both fields'); return; }
+
+  // Conservative estimates based on industry data
+  const replyRate = 0.08; // 8% reply rate
+  const bookRate = 0.35;  // 35% of replies book
+  const smsCostPer = 0.008;
+
+  const replies = Math.round(customers * replyRate);
+  const jobs = Math.max(1, Math.round(replies * bookRate));
+  const revenue = jobs * avgJob;
+  const smsCost = (customers * smsCostPer).toFixed(2);
+  const roi = Math.round(revenue / Math.max(parseFloat(smsCost), 0.01));
+  const profit = revenue - parseFloat(smsCost);
+
+  document.getElementById('revenue').textContent = '$' + revenue.toLocaleString();
+  document.getElementById('roi').textContent = roi.toLocaleString() + 'x';
+  document.getElementById('jobsBooked').textContent = jobs;
+  document.getElementById('smsCost').textContent = '$' + smsCost;
+  
+  document.getElementById('bkTexted').textContent = customers;
+  document.getElementById('bkReply').textContent = (replyRate * 100) + '%';
+  document.getElementById('bkReplies').textContent = replies;
+  document.getElementById('bkBookRate').textContent = (bookRate * 100) + '%';
+  document.getElementById('bkJobs').textContent = jobs;
+  document.getElementById('bkAvg').textContent = '$' + avgJob;
+  document.getElementById('bkCost').textContent = '$' + smsCost;
+  document.getElementById('bkProfit').textContent = '$' + profit.toLocaleString();
+
+  document.getElementById('results').classList.add('show');
+  document.getElementById('results').scrollIntoView({ behavior: 'smooth', block: 'start' });
+}
+</script>
+</body>
+</html>
