@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://wearnur.github.io/reachback-landing/sitemap.xml
